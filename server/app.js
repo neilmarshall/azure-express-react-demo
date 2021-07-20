@@ -3,6 +3,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// load environment variables
+require('dotenv').config();
+
 var app = express();
 
 app.use(logger('dev'));
@@ -28,6 +31,12 @@ app.use('/api/cars', function(req, res, next) {
       ]
     }
   );
+});
+
+app.use('/api/welcome-message', function(req, res, next) {
+  res.json({
+    welcomeMessage: process.env.WELCOME_MESSAGE
+  });
 });
 
 /* GET home page */
