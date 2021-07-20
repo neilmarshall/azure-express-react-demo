@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node server/app.js",
-    "build": "npm run scaffoldClient && npm run scaffoldServer",
-    "scaffoldClient": "cd client && npm install && npm run build",
-    "scaffoldServer": "cd server && npm install"
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm install && npm run build",
+    "build:server": "cd server && npm install"
   }
 }
