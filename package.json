@@ -1,0 +1,11 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server/app.js",
+    "build": "npm run scaffoldClient && npm run scaffoldServer",
+    "scaffoldClient": "cd client && npm install && npm run build",
+    "scaffoldServer": "cd server && npm install"
+  }
+}
