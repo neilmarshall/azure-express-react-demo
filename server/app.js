@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 // Handle GET requests to /api route
 app.use('/api/cars', function(req, res, next) {
@@ -30,11 +30,18 @@ app.use('/api/cars', function(req, res, next) {
   );
 });
 
-// All other GET requests not handled before will return our React app
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+/* GET home page */
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve('index.html'));
 });
 
-const PORT= 5000;
+// All other GET requests not handled before will return our React app
+app.get('*', (req, res) => {
+  res.redirect('/');
+});
+
+const PORT = process.env.PORT || 5000;
+
+console.log(`Starting Express on port ${PORT}...`);
+
 app.listen(PORT);
-console.log(`Express started on port ${PORT}`);
